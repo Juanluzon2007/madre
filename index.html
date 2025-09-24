@@ -1,24 +1,199 @@
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Feliz Día de la Madre ❤️</title>
-    <link rel="stylesheet" href="style.css">
+    <title>¡Feliz Cumpleaños, Mamá!</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f1e3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        .card-container {
+            width: 100%;
+            max-width: 400px;
+            perspective: 1000px;
+        }
+        .card {
+            width: 100%;
+            height: 550px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.8s;
+            cursor: pointer;
+        }
+        .card.open {
+            transform: rotateY(180deg);
+        }
+        .card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            padding: 30px;
+        }
+        .card-front {
+            background-color: #fde8c2;
+        }
+        .card-back {
+            background-color: #fff;
+            transform: rotateY(180deg);
+        }
+        .surprise-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #5d4037;
+            text-align: center;
+            line-height: 1.2;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            font-size: 1rem;
+            color: #7a7a7a;
+        }
+        .gift-icon {
+            font-size: 8rem;
+            color: #fdd835;
+            margin-top: 30px;
+            animation: bounce 2s infinite;
+        }
+        .back-title-line1 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #fdd835;
+        }
+        .back-title-line2 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #5d4037;
+        }
+        .emoji-icon {
+            font-size: 2.5rem;
+            position: absolute;
+            top: 20px;
+        }
+        .emoji-icon.left {
+            left: 20px;
+        }
+        .emoji-icon.right {
+            right: 20px;
+        }
+        .message-text {
+            color: #5d4037;
+            text-align: center;
+            font-size: 1.25rem;
+            margin-top: 20px;
+        }
+        .signature {
+            color: #a1a1a1;
+            margin-top: 40px;
+            font-size: 1rem;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-30px);
+            }
+            60% {
+                transform: translateY(-15px);
+            }
+        }
+
+        /* Media queries para dispositivos más pequeños */
+        @media (max-width: 480px) {
+            .card {
+                height: 450px;
+            }
+            .surprise-title {
+                font-size: 2rem;
+            }
+            .back-title-line1, .back-title-line2 {
+                font-size: 2.5rem;
+            }
+            .message-text {
+                font-size: 1rem;
+            }
+        }
+    </style>
 </head>
-<body>
-    <div class="container">
-        <img id="flower-image" src="mothers_day_roses.png" alt="Rosas para Mamá">
-        <h1>¡Feliz Día de la Madre!</h1>
-        <p class="message">
-            Queridas Madres,<br><br>
-            Dos corazones que me abrazan, dos almas que me cuidan, dos madres que son mi hogar. No hay palabras suficientes para agradecer tanto amor multiplicado, tantas caricias compartidas, tanta sabiduría y ternura tejida entre las dos. Ustedes son mi mayor bendición, mi doble fuerza y mi refugio eterno. Gracias por enseñarme que el amor verdadero no se divide, se multiplica. Hoy celebro a las dos, porque sin ustedes, yo no sería quien soy. 
-        </p>
-        <audio id="bgMusic" loop src="Ricardo Arjona - Mi Novia Se Me Está Poniendo Vieja.mp3"></audio>
-        <button id="playPauseButton">Toca aquí para una sorpresa musical 💖</button>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen p-4">
+
+    <div class="card-container">
+        <div class="card" id="card">
+            <!-- Front of the card (surprise) -->
+            <div class="card-face card-front">
+                <h1 class="surprise-title">Una Sorpresa Para Ti</h1>
+                <p class="subtitle">(Haz clic para abrir)</p>
+                <span class="text-9xl text-[#fdd835] mt-8 animate-bounce">🎁</span>
+            </div>
+
+            <!-- Back of the card (message) -->
+            <div class="card-face card-back text-center">
+                <span class="emoji-icon left">🎊</span>
+                <span class="emoji-icon right">🎁</span>
+                <h1 class="back-title-line1">¡Feliz</h1>
+                <h1 class="back-title-line2">Cumpleaños, Mamá!</h1>
+                <p class="message-text">
+                    Gracias por quererme y cuidarme.<br>
+                    Te quiero con todo mi corazón.
+                </p>
+                <p class="signature">
+                    Con amor, Juan <span class="text-red-500">♥</span>
+                </p>
+            </div>
+        </div>
     </div>
-    <div class="attribution">
-        por juan luzon que viva messi
-    </div>
-    <script src="script.js"></script>
+
+    <!-- Audio element for background music -->
+    <audio id="background-music" loop>
+        <!-- La URL del audio a continuación es un marcador de posición. Deberás reemplazarla con una URL real a una canción. -->
+        <source src="https://www.learningcontainer.com/wp-content/uploads/2020/02/Kalimba.mp3" type="audio/mpeg">
+        Tu navegador no soporta el elemento de audio.
+    </audio>
+
+    <script>
+        // Get the card and audio elements
+        const card = document.getElementById('card');
+        const music = document.getElementById('background-music');
+        
+        // Change the source of the audio to the specified song
+        music.src = "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"; // Placeholder URL for "Las Mañanitas"
+        
+        // Function to handle the card flip
+        card.addEventListener('click', () => {
+            // Add or remove the 'open' class to trigger the CSS flip effect
+            card.classList.toggle('open');
+            
+            // Play or pause the music based on the card state
+            if (card.classList.contains('open')) {
+                music.play();
+            } else {
+                music.pause();
+            }
+        });
+
+        // Autoplay music on page load, if the browser allows it.
+        // Some browsers block autoplay, so we rely on the click event.
+        window.onload = function() {
+            music.play().catch(e => console.log('Autoplay blocked. User needs to click to play music.'));
+        };
+    </script>
 </body>
 </html>
